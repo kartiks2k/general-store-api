@@ -42,7 +42,7 @@ const Item = mongoose.model("Item",itemSchema);
 //User routes
 app.post("/user/login", (req, res) => {
   User.findOne({username : req.body.username, password : req.body.password}, function(err, foundUser){
-    if(foundShopkeeper)
+    if(foundUser)
       res.status(200).json({Status:1, Message:"Successful login"});
     else
       res.status(200).json({Status:2, Message:"Invalid Credentials"});
@@ -59,7 +59,6 @@ app.post("/user/register", (req, res) => {
       username : req.body.username,
       password : req.body.password
     });
-    console.log(req.body);
     newUser.save(function(err) {
       if (!err)
         res.status(200).json({Status:1, Message:"Successfully registered"});
